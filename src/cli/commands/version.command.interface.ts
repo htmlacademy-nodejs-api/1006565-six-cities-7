@@ -1,4 +1,4 @@
-import { error } from 'node:console';
+import { error } from 'node:console'
 import {Command} from './command.interface.js'
 import { readFileSync } from 'node:fs'
 import { resolve } from 'node:path'
