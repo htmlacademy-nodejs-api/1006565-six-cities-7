@@ -1,5 +1,4 @@
-import { OfferType } from './offer-type.enum.js';
-
+import { OfferType } from "./offer-type.enum.js";
 
 export type Offer = {
   title: string;
@@ -7,16 +6,16 @@ export type Offer = {
   postDate: Date;
   city: string;
   image: string;
-  photoes: string[],
-  isPremium: boolean,
-  isFavorite: boolean,
-  rating: number,
-  type: OfferType
-  roomNumber: number,
-  guestsNumber: number,
+  photoes: string[];
+  isPremium: boolean;
+  isFavorite: boolean;
+  rating: number;
+  type: OfferType;
+  roomNumber: number;
+  guestsNumber: number;
   price: number;
-  features: string[]
+  features: string[];
   author: string;
-  commentsNumber: number
+  commentsNumber: number;
   coordinates: string[];
-}
+};
