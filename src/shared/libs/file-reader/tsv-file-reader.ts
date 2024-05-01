@@ -1,43 +1,43 @@
-import { readFileSync } from "node:fs";
-import { FileReader } from "./file-reader.interface.js";
-import { Offer, OfferType } from "../../types/index.js";
-import chalk from "chalk";
+import { readFileSync } from 'node:fs';
+import { FileReader } from './file-reader.interface.js';
+import { Offer, OfferType } from '../../types/index.js';
+import chalk from 'chalk';
 
 export class TSVFileReader implements FileReader {
-  private rawData = "";
+  private rawData = '';
 
   constructor(private readonly filename: string) {}
 
   private validateRawData(): void {
     if (!this.rawData) {
-      throw new Error("File was not read");
+      throw new Error('File was not read');
     }
   }
 
   private parseRawDataToOffers(): Offer[] {
     return this.rawData
-      .split("\n")
+      .split('\n')
       .filter((row) => row.trim().length > 0)
       .map((line) => this.parseLineToOffer(line));
   }
 
   private parseFeatures(features: string): string[] {
-    return features.split(", ");
+    return features.split(', ');
   }
 
   private parsePhotoes(photoes: string): string[] {
-    return photoes.split(", ");
+    return photoes.split(', ');
   }
 
   private parseBoolean(value: string): boolean {
-    return value === "true";
+    return value === 'true';
   }
 
   private parseLineToOffer(line: string): Offer {
-    const parts = line.split("\t");
+    const parts = line.split('\t');
     if (parts.length < 17) {
-      console.error(chalk.red("Unexpected number of elements:", parts.length));
-      throw new Error("Each line must contain 17 fields separated by tabs");
+      console.error(chalk.red('Unexpected number of elements:', parts.length));
+      throw new Error('Each line must contain 17 fields separated by tabs');
     }
     const [
       title,
@@ -69,7 +69,7 @@ export class TSVFileReader implements FileReader {
       isPremium: this.parseBoolean(isPremium),
       isFavorite: this.parseBoolean(isFavorite),
       rating: Number(rating),
-      type: OfferType[type as "apartment" | "house" | "room" | "hotel"],
+      type: OfferType[type as 'apartment' | 'house' | 'room' | 'hotel'],
       roomNumber: Number(roomNumber),
       guestsNumber: Number(guestsNumber),
       price: this.parsePrice(price),
@@ -81,7 +81,7 @@ export class TSVFileReader implements FileReader {
   }
 
   private parseCoordinated(coordinates: string): string[] {
-    return coordinates.split(", ");
+    return coordinates.split(', ');
   }
 
   private parsePrice(priceString: string): number {
@@ -93,7 +93,7 @@ export class TSVFileReader implements FileReader {
   }
 
   public read(): void {
-    this.rawData = readFileSync(this.filename, { encoding: "utf-8" });
+    this.rawData = readFileSync(this.filename, { encoding: 'utf-8' });
   }
 
   public toArray(): Offer[] {
