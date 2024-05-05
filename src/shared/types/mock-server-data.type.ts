@@ -3,7 +3,7 @@ export type MockServerData = {
   description: string[];
   city: string[];
   image: string[];
-  photoes: string[];
+  photos: string[];
   isPremium: string[];
   isFavorite: string[];
   rating: string[];

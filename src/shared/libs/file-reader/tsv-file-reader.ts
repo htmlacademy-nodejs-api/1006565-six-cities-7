@@ -25,8 +25,8 @@ export class TSVFileReader implements FileReader {
     return features.split(', ');
   }
 
-  private parsePhotoes(photoes: string): string[] {
-    return photoes.split(', ');
+  private parsePhotos(photos: string): string[] {
+    return photos.split(', ');
   }
 
   private parseBoolean(value: string): boolean {
@@ -45,7 +45,7 @@ export class TSVFileReader implements FileReader {
       createdDate,
       city,
       image,
-      photoes,
+      photos,
       isPremium,
       isFavorite,
       rating,
@@ -65,7 +65,7 @@ export class TSVFileReader implements FileReader {
       postDate: new Date(createdDate),
       city,
       image,
-      photoes: this.parsePhotoes(photoes),
+      photos: this.parsePhotos(photos),
       isPremium: this.parseBoolean(isPremium),
       isFavorite: this.parseBoolean(isFavorite),
       rating: Number(rating),
