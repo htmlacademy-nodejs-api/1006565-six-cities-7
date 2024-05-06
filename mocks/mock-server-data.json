@@ -1,0 +1,74 @@
+{
+  "api": {
+    "title": ["Snickers", "Mars", "Bounti", "Twiks", "Milky Way"],
+    "description": [
+      "The best hotel in the world",
+      "You dream vacation",
+      "Sleep well, eat greate",
+      "The place where you can relax",
+      "Your dreams are realised here",
+      "The luxuary is yours"
+    ],
+    "city": [
+      "Paris",
+      "Cologne",
+      "Brussels",
+      "Amsterdam",
+      "Hamburg",
+      "Dusseldorf"
+    ],
+    "image": [
+      "book.jpg",
+      "institute-book.jpg",
+      "dark-tower.jpg",
+      "shining.jpg",
+      "draft.jpg",
+      "magic.jpg"
+    ],
+    "photos": [
+      "category-book.jpg, category-disk.jpg",
+      "category-disk.jpg",
+      "category-home.jpg, category-book.jpg, category-disk.jpg",
+      "category-games.jpg, category-disk.jpg, category-book.jpg, category-disk.jpg",
+      "category-entertainment.jpg, category-disk.jpg",
+      "category-films.jpg, category-book.jpg, category-disk.jpg"
+    ],
+    "isPremium": ["true", "false"],
+    "isFavorite": ["true", "false"],
+    "rating": ["1", "2", "3", "4", "5"],
+    "type": ["hotel", "room", "apartment", "house"],
+    "roomNumber": ["1", "2", "3", "4", "5", "6", "7", "8"],
+    "guestsNumber": ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"],
+    "price": ["100", "10500", "8000", "400"],
+    "features": [
+      "Breakfast",
+      "Air conditioning",
+      "Laptop friendly workspace",
+      "Baby seat",
+      "Washer",
+      "Towels",
+      "Fridge"
+    ],
+    "author": [
+      "Иван Иванов",
+      "Олег Сидоров",
+      "Пьер Безухов",
+      "Роланд Дискейн",
+      "Холи Гибни",
+      "Джек Торренс",
+      "Антон Городецкий",
+      "Борис Гесер",
+      "Рокки Бальбоа",
+      "Джон Смит"
+    ],
+    "commentsNumber": ["2", "5", "16"],
+    "coordinates": [
+      "48.85661, 2.351499",
+      "50.938361, 6.959974",
+      "50.846557, 4.351697",
+      "52.370216, 4.895168",
+      "53.550341, 10.000654",
+      "51.225402, 6.776314"
+    ]
+  }
+}

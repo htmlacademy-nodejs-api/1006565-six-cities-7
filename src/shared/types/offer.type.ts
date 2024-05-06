@@ -6,7 +6,7 @@ export type Offer = {
   postDate: Date;
   city: string;
   image: string;
-  photoes: string[];
+  photos: string[];
   isPremium: boolean;
   isFavorite: boolean;
   rating: number;
