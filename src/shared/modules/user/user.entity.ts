@@ -1,12 +1,12 @@
 import { User } from '../../types/index.js';
-import { prop, getModelForClass, modelOptions, Severity } from '@typegoose/typegoose';
+import { prop, getModelForClass, defaultClasses, modelOptions, Severity } from '@typegoose/typegoose';
 
 @modelOptions({
   schemaOptions: { timestamps: true },
   options: { allowMixed: Severity.ALLOW }
 })
 
-export class UserEntity implements User {
+export class UserEntity extends defaultClasses.TimeStamps implements User {
   @prop({ required: true, unique: true, match: /^([\w-\\.]+@([\w-]+\.)+[\w-]{2,4})?$/, message: 'Email is incorrect' })
   public email!: string;
 
