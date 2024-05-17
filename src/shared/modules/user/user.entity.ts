@@ -1,10 +1,10 @@
 import { User } from '../../types/index.js';
-import { prop, getModelForClass, defaultClasses, modelOptions, Severity } from '@typegoose/typegoose';
+import { prop, getModelForClass, defaultClasses} from '@typegoose/typegoose';
 
-@modelOptions({
-  schemaOptions: { timestamps: true },
-  options: { allowMixed: Severity.ALLOW }
-})
+// eslint-disable-next-line @typescript-eslint/no-unsafe-declaration-merging
+export interface UserEntity extends defaultClasses.Base {}
+
+// eslint-disable-next-line @typescript-eslint/no-unsafe-declaration-merging
 
 export class UserEntity extends defaultClasses.TimeStamps implements User {
   @prop({ required: true, unique: true, match: /^([\w-\\.]+@([\w-]+\.)+[\w-]{2,4})?$/, message: 'Email is incorrect' })
