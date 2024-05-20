@@ -46,9 +46,7 @@ export class MongoDatabaseClient implements DatabaseClient {
         this.logger.error(`Failed to connect to the database. Attempt ${attempt}`, error as Error);
         await setTimeout(RETRY_TIMEOUT);
       }
-    }
-
-throw new Error(`Unable to establish database connection after ${RETRY_COUNT}`);
+    } throw new Error(`Unable to establish database connection after ${RETRY_COUNT}`);
 
   }
 

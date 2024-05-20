@@ -8,17 +8,16 @@ import { createUserContainer } from './shared/modules/user/index.js';
 import { createFeatureContainer } from './shared/modules/feature/index.js';
 import { createOfferContainer } from './shared/modules/offer/index.js';
 
-
-
-
 async function bootstrap() {
   const appContainer = Container.merge(
     createRestApplicationContainer(),
     createUserContainer(),
     createFeatureContainer(),
-    createOfferContainer(),
+    createOfferContainer()
   );
-  const application = appContainer.get<RestApplication>(Component.RestApplication);
+  const application = appContainer.get<RestApplication>(
+    Component.RestApplication
+  );
   await application.init();
 }
 

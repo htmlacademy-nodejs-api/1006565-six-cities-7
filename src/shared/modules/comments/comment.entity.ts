@@ -22,8 +22,7 @@ export interface CommentEntity extends defaultClasses.Base {}
 // eslint-disable-next-line @typescript-eslint/no-unsafe-declaration-merging
 export class CommentEntity
   extends defaultClasses.TimeStamps
-  implements Comment
-{
+  implements Comment {
   @prop({ required: true, message: 'Text is required' })
   public text: string;
 

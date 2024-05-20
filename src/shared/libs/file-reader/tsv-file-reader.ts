@@ -22,11 +22,11 @@ export class TSVFileReader implements FileReader {
   }
 
   private parseFeatures(features: string): Feature[] {
-    return features.split(', ').map(item => {return ({name: item})});
+    return features.split(', ').map((item) => ({name: item}));
   }
 
   private parsePhotos(photos: string): string[] {
-    return photos.split(', ')
+    return photos.split(', ');
   }
 
   private parseBoolean(value: string): boolean {
