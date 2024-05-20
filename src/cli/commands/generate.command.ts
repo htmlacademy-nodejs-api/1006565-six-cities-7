@@ -6,7 +6,7 @@ export class GenerateCommand implements Command {
   }
 
   public execute(...parameters: string[]): void {
-    console.log('parameters', parameters)
+    console.log('parameters', parameters);
     // const [count, filepath, url] = parameters;
     // const offerCount = Number.parseInt(count, 10);
 
