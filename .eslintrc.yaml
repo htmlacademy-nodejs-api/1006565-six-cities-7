@@ -12,6 +12,3 @@ extends:
   - 'plugin:@typescript-eslint/recommended'
   - 'htmlacademy/node'
 rules:
-quotes:
-  - error
-  - single
