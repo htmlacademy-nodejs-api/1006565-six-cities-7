@@ -5,10 +5,10 @@ import {
   prop
 } from '@typegoose/typegoose';
 
-import { Category } from '../../types/index.js';
+import { Feature } from '../../types/index.js';
 
 // eslint-disable-next-line @typescript-eslint/no-unsafe-declaration-merging
-export interface CategoryEntity extends defaultClasses.Base {}
+export interface FeatureEntity extends defaultClasses.Base {}
 
 @modelOptions({
   schemaOptions: {
@@ -17,9 +17,9 @@ export interface CategoryEntity extends defaultClasses.Base {}
   }
 })
 // eslint-disable-next-line @typescript-eslint/no-unsafe-declaration-merging
-export class CategoryEntity extends defaultClasses.TimeStamps implements Category {
+export class FeatureEntity extends defaultClasses.TimeStamps implements Feature {
   @prop({required: true, trim: true})
   public name!: string;
 }
 
-export const CategoryModel = getModelForClass(CategoryEntity);
+export const FeatureModel = getModelForClass(FeatureEntity);
