@@ -1,6 +1,6 @@
 import { readFileSync } from 'node:fs';
 import { FileReader } from './file-reader.interface.js';
-import { Offer, OfferType } from '../../types/index.js';
+import { Offer, OfferType, Feature, User } from '../../types/index.js';
 import chalk from 'chalk';
 
 export class TSVFileReader implements FileReader {
@@ -21,12 +21,12 @@ export class TSVFileReader implements FileReader {
       .map((line) => this.parseLineToOffer(line));
   }
 
-  private parseFeatures(features: string): string[] {
-    return features.split(', ');
+  private parseFeatures(features: string): Feature[] {
+    return features.split(', ').map(item => {return ({name: item})});
   }
 
   private parsePhotos(photos: string): string[] {
-    return photos.split(', ');
+    return photos.split(', ')
   }
 
   private parseBoolean(value: string): boolean {
@@ -54,7 +54,10 @@ export class TSVFileReader implements FileReader {
       guestsNumber,
       price,
       features,
-      author,
+      name,
+      email,
+      usertype,
+      avatarPath,
       commentsNumber,
       coordinates,
     ] = parts;
@@ -74,7 +77,7 @@ export class TSVFileReader implements FileReader {
       guestsNumber: Number(guestsNumber),
       price: this.parsePrice(price),
       features: this.parseFeatures(features),
-      author: this.parseUser(author),
+      author: this.parseUser(name, usertype, avatarPath, email),
       commentsNumber: Number(commentsNumber),
       coordinates: this.parseCoordinated(coordinates),
     };
@@ -88,8 +91,8 @@ export class TSVFileReader implements FileReader {
     return Number.parseInt(priceString, 10);
   }
 
-  private parseUser(author: string): string {
-    return author;
+  private parseUser(name: string, email: string, avatarPath: string, usertype: string): User {
+    return { email, name, avatarPath, usertype};
   }
 
   public read(): void {

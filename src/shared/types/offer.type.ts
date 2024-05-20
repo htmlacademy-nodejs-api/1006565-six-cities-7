@@ -1,4 +1,7 @@
 import { OfferType } from './offer-type.enum.js';
+import { Feature } from './feature.type.js';
+import { User } from './user.type.js';
+
 
 export type Offer = {
   title: string;
@@ -14,8 +17,8 @@ export type Offer = {
   roomNumber: number;
   guestsNumber: number;
   price: number;
-  features: string[];
-  author: string;
+  features: Feature[];
+  author: User;
   commentsNumber: number;
   coordinates: string[];
 };

@@ -25,7 +25,7 @@ export class UserEntity extends defaultClasses.TimeStamps implements User {
   public name!: string;
 
   @prop({ required: true, enum: ['pro', 'basic'], message: 'Type must be either pro or basic', default: '' })
-  public type!: string;
+  public usertype!: string;
 
   @prop({ required: true, minlength: 6, maxlength: 12, message: 'Min length for password is 6 and max length is 12' })
   public password!: string;

@@ -35,13 +35,13 @@ export const configRestSchema = convict<RestSchema>({
   },
   DB_USER: {
     doc: 'Username to connect to the database',
-    format: String,
+    format: '*',
     env: 'DB_USER',
     default: null,
   },
   DB_PASSWORD: {
     doc: 'Password to connect to the database',
-    format: String,
+    format: '*',
     env: 'DB_PASSWORD',
     default: null,
   },
@@ -53,7 +53,7 @@ export const configRestSchema = convict<RestSchema>({
   },
   DB_NAME: {
     doc: 'Database name (MongoDB)',
-    format: String,
+    format: 'String',
     env: 'DB_NAME',
     default: 'buy-and-sell'
   },

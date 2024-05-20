@@ -1,7 +1,7 @@
 import dayjs from 'dayjs';
 
 import { OfferGenerator } from './offer-generator.interface.js';
-import { MockServerData, OfferType } from '../../types/index.js';
+import { MockServerData } from '../../types/index.js';
 import {
   generateRandomValue,
   getRandomItem,
