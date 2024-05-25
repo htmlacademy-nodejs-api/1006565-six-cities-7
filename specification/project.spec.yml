@@ -1,0 +1,9 @@
+openapi: 3.1.0
+info:
+  title: API server for study project "Six Cities".
+  description: |-
+    * The list of resources and pathes of server "Six Cities".
+  license:
+    name: MIT
+    url: https://opensource.org/licenses/MIT
+  version: 2.0.0
