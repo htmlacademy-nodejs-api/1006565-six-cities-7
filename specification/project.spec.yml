@@ -18,3 +18,44 @@ tags:
     description: Actions with users.
   - name: features
     description: Actions with features.
+
+
+paths:
+  /users/register:
+    post:
+      tags:
+        - users
+      summary: User registration
+      description: Creates a new user.
+
+      requestBody:
+        description: Info for user registration.
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/createUser'
+        required: true
+
+      responses:
+        "201":
+          description: User is created. User object.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/user'
+
+        "409":
+          description: A user with such email already exists.
+
+  /users/login:
+    post:
+      tags:
+        - users
+      summary: User authorizatin
+      description: Authorizes user based on login and password
+
+    get:
+      tags:
+        - users
+      summary: Checks user status
+      description: Gives information for a user
