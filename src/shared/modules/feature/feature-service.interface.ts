@@ -8,4 +8,5 @@ export interface FeatureService {
   findByFeatureId(featureId: string): Promise<DocumentType<FeatureEntity> | null>;
   findByFeatureName(featureName: string): Promise<DocumentType<FeatureEntity> | null>;
   findByFeatureNameOrCreate(featureName: string, dto: CreateFeatureDto): Promise<DocumentType<FeatureEntity>>;
+  find(): Promise<DocumentType<FeatureEntity>[]>;
 }

@@ -1,4 +1,4 @@
-import { inject } from 'inversify';
+import { inject, injectable } from 'inversify';
 import { DocumentType, types } from '@typegoose/typegoose';
 
 import { FeatureService } from './feature-service.interface.js';
@@ -7,6 +7,7 @@ import { Logger } from '../../libs/logger/index.js';
 import { FeatureEntity } from './feature.entity.js';
 import { CreateFeatureDto } from './dto/create-feature.dto.js';
 
+@injectable()
 export class DefaultFeatureService implements FeatureService {
   constructor(
     @inject(Component.Logger) private readonly logger: Logger,
@@ -35,5 +36,10 @@ export class DefaultFeatureService implements FeatureService {
     }
 
     return this.create(dto);
+  }
+
+
+  public async find(): Promise<DocumentType<FeatureEntity>[]> {
+    return this.featureModel.find();
   }
 }
