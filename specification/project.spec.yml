@@ -7,3 +7,14 @@ info:
     name: MIT
     url: https://opensource.org/licenses/MIT
   version: 2.0.0
+tags:
+  - name: offers
+    description: Actions with offers.
+  - name: cities
+    description: Actions with cities.
+  - name: comments
+    description: Actions with comments.
+  - name: users
+    description: Actions with users.
+  - name: features
+    description: Actions with features.
