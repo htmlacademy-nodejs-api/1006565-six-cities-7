@@ -54,8 +54,119 @@ paths:
       summary: User authorizatin
       description: Authorizes user based on login and password
 
+      responses:
+        "200":
+          description: User is logged in. User object.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/user'
+
+        "409":
+          description: A user with such email doesn't exists.
+
     get:
       tags:
         - users
       summary: Checks user status
       description: Gives information for a user
+
+  /offers/create:
+    post:
+      tags:
+       - offers
+      summary: Creates a new offer
+      description: Creates a new offer
+
+  /offers/{offerId}:
+    put:
+      tags:
+       - offers
+      summary: Edit the offer
+      description: Edit the offer by it's id
+    get:
+      tags:
+       - offers
+      summary: Gets info about the offer
+      description: Gets detailed info about the offer
+    delete:
+      tags:
+       - offers
+      summary: Deletes the offer
+      description: Deletes the offer
+
+  /offers/:
+    get:
+      tags:
+        -offers
+      summary: Get all affers
+
+  /offers/{offerId}/comments:
+    get:
+      tags:
+        - offers
+        - comments
+      summary: Gets all comments for the offer
+      description: Gets all comments for the offer
+    post:
+      tags:
+        - offers
+        - comments
+      summary: Add a comment for the offer
+      description: Add a comment for the offer
+
+  /offers/premium:
+    get:
+      tags:
+        - offers
+      summary: Gets all premium offers in the city
+      description: Gets all premium offers in the city
+
+  /user/favorites:
+      get:
+        tags:
+          - offers
+        summary: Gets all favirite offers of the user
+        description: Gets all favirite offers of the user
+      post:
+        tags:
+          - offers
+        summary: Puts the offer to the favirite offers of the user
+        description: Puts the offer to the favirite offers of the user
+
+# 2.10. Выход из закрытой части приложения.
+
+
+components:
+  schemas:
+    createUser:
+      type: object
+
+      properties:
+        email:
+          type: string
+          example: keks@htmlacademy.ru
+
+        firstname:
+          type: string
+          example: Keks
+
+        lastname:
+          type: string
+          example: Cat
+
+        password:
+          type: string
+          example: 123456
+
+    user:
+      type: object
+
+      properties:
+        id:
+          type: string
+          example: 6329c3d6a04ab1061c6425ea
+
+        email:
+          type: string
+          example: keks@htmlacademy.ru
