@@ -14,7 +14,7 @@ export interface OfferService {
   incCommentCount(offerId: string): Promise<DocumentType<OfferEntity> | null>;
   findNew(count: number): Promise<DocumentType<OfferEntity>[]>;
   findDiscussed(count: number): Promise<DocumentType<OfferEntity>[]>;
-  findIsPremium(count: number): Promise<DocumentType<OfferEntity>[]>;
+  findIsPremium(isPremium: boolean): Promise<DocumentType<OfferEntity>[]>;
   exists(documentId: string): Promise<boolean>;
 
 }
