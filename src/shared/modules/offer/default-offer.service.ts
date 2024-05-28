@@ -90,13 +90,11 @@ export class DefaultOfferService implements OfferService {
       .exec();
   }
 
-  public async findIsPremium(isPremium: boolean): Promise<DocumentType<OfferEntity>[]> {
+  public async findIsPremium(count: number, city: string): Promise<DocumentType<OfferEntity>[]> {
     return this.offerModel
-      .find({isPremium: isPremium})
-      .populate(['userId', 'type'])
+      .find({ isPremium: true, city })
+      .sort({ createdAt: SortType.Down })
+      .limit(count)
       .exec();
-
   }
-
-
 }

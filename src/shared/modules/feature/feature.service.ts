@@ -2,10 +2,12 @@ import { inject, injectable } from 'inversify';
 import { DocumentType, types } from '@typegoose/typegoose';
 
 import { FeatureService } from './feature-service.interface.js';
-import { Component } from '../../types/index.js';
+import { Component, SortType } from '../../types/index.js';
 import { Logger } from '../../libs/logger/index.js';
 import { FeatureEntity } from './feature.entity.js';
 import { CreateFeatureDto } from './dto/create-feature.dto.js';
+import { MAX_CATEGORIES_COUNT } from './feature.constant.js';
+
 
 @injectable()
 export class DefaultFeatureService implements FeatureService {
@@ -40,6 +42,25 @@ export class DefaultFeatureService implements FeatureService {
 
 
   public async find(): Promise<DocumentType<FeatureEntity>[]> {
-    return this.featureModel.find();
+    return this.featureModel
+      .aggregate([
+        {
+          $lookup: {
+            from: 'offers',
+            let: { featureId: '$_id'},
+            pipeline: [
+              { $match: { $expr: { $in: ['$$featureId', '$features'] } } },
+              { $project: { _id: 1}}
+            ],
+            as: 'offers'
+          },
+        },
+        { $addFields:
+          { id: { $toString: '$_id'}, offerCount: { $size: '$offers'} }
+        },
+        { $unset: 'offers' },
+        { $limit: MAX_CATEGORIES_COUNT },
+        { $sort: { offerCount: SortType.Down } }
+      ]).exec();
   }
 }
