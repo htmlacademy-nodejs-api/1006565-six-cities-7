@@ -27,7 +27,7 @@ export class DefaultOfferService implements OfferService {
   public async findById(offerId: string): Promise<DocumentType<OfferEntity> | null> {
     return this.offerModel
       .findById(offerId)
-      .populate(['userId', 'cities'])
+      .populate(['userId', 'city'])
       .exec();
   }
 
@@ -35,7 +35,7 @@ export class DefaultOfferService implements OfferService {
   public async find(): Promise<DocumentType<OfferEntity>[]> {
     return this.offerModel
       .find()
-      .populate(['userId', 'categories'])
+      .populate(['userId', 'city'])
       .exec();
   }
 
@@ -48,7 +48,7 @@ export class DefaultOfferService implements OfferService {
   public async updateById(offerId: string, dto: UpdateOfferDto): Promise<DocumentType<OfferEntity> | null> {
     return this.offerModel
       .findByIdAndUpdate(offerId, dto, {new: true})
-      .populate(['userId', 'type'])
+      .populate(['userId', 'city'])
       .exec();
   }
 
@@ -56,7 +56,7 @@ export class DefaultOfferService implements OfferService {
     const limit = count ?? DEFAULT_OFFER_COUNT;
     return this.offerModel
       .find({city: cityId}, {}, {limit})
-      .populate(['cityId', 'cities'])
+      .populate(['cityId', 'city'])
       .exec();
   }
 
@@ -77,7 +77,7 @@ export class DefaultOfferService implements OfferService {
       .find()
       .sort({ createdAt: SortType.Down })
       .limit(count)
-      .populate(['userId', 'type'])
+      .populate(['userId', 'city'])
       .exec();
   }
 
@@ -86,7 +86,7 @@ export class DefaultOfferService implements OfferService {
       .find()
       .sort({ commentCount: SortType.Down })
       .limit(count)
-      .populate(['userId', 'type'])
+      .populate(['userId', 'city'])
       .exec();
   }
 

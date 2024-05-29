@@ -12,7 +12,7 @@ export interface Cityntity extends defaultClasses.Base {}
 
 @modelOptions({
   schemaOptions: {
-    collection: 'categories',
+    collection: 'features',
     timestamps: true,
   }
 })

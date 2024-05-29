@@ -6,7 +6,7 @@ import { Component, SortType } from '../../types/index.js';
 import { Logger } from '../../libs/logger/index.js';
 import { FeatureEntity } from './feature.entity.js';
 import { CreateFeatureDto } from './dto/create-feature.dto.js';
-import { MAX_CATEGORIES_COUNT } from './feature.constant.js';
+import { MAX_FEATURES_COUNT } from './feature.constant.js';
 
 
 @injectable()
@@ -59,7 +59,7 @@ export class DefaultFeatureService implements FeatureService {
           { id: { $toString: '$_id'}, offerCount: { $size: '$offers'} }
         },
         { $unset: 'offers' },
-        { $limit: MAX_CATEGORIES_COUNT },
+        { $limit: MAX_FEATURES_COUNT },
         { $sort: { offerCount: SortType.Down } }
       ]).exec();
   }

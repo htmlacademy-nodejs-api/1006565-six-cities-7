@@ -1,1 +1,1 @@
-export const MAX_CATEGORIES_COUNT = 6;
+export const MAX_FEATURES_COUNT = 6;
