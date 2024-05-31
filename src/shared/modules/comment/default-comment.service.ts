@@ -28,13 +28,17 @@ export class DefaultCommentService implements CommentService {
     return this.commentModel.findOne({text});
   }
 
-  public async findOrCreate(dto: CreateCommentDto): Promise<DocumentType<CommentEntity>> {
-    const existedComment = await this.findByText(dto.text);
+  public async findByOfferId(offerId: string): Promise<DocumentType<CommentEntity>[]> {
+    return this.commentModel
+      .find({offerId})
+      .populate('userId');
+  }
 
-    if (existedComment) {
-      return existedComment;
-    }
+  public async deleteByOfferId(offerId: string): Promise<number> {
+    const result = await this.commentModel
+      .deleteMany({offerId})
+      .exec();
 
-    return this.create(dto);
+    return result.deletedCount;
   }
 }

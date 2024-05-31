@@ -71,6 +71,18 @@ paths:
       summary: Checks user status
       description: Gives information for a user
 
+  /user/favorites:
+    get:
+      tags:
+        - offers
+      summary: Gets all favirite offers of the user
+      description: Gets all favirite offers of the user
+    post:
+      tags:
+        - offers
+      summary: Puts the offer to the favirite offers of the user
+      description: Puts the offer to the favirite offers of the user
+
   /offers/create:
     post:
       tags:
@@ -78,28 +90,108 @@ paths:
       summary: Creates a new offer
       description: Creates a new offer
 
+      requestBody:
+        description: Info for offer creation.
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/offer'
+        required: true
+
+      responses:
+        "201":
+          description: Offer has been created. Offer object.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/offer'
+
   /offers/{offerId}:
     put:
       tags:
        - offers
       summary: Edit the offer
       description: Edit the offer by it's id
+
+      requestBody:
+        description: Info for offer edition.
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/editOffer'
+        required: true
+
+      responses:
+        "200":
+          description: Offer is updated. Object of offer.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/offer'
     get:
       tags:
        - offers
       summary: Gets info about the offer
       description: Gets detailed info about the offer
+
+      requestBody:
+        description: Info for offer search.
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/editOffer'
+        required: true
+
+      responses:
+        "200":
+          description: Offer by search. Offer object.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/offer'
     delete:
       tags:
        - offers
       summary: Deletes the offer
       description: Deletes the offer
 
+      requestBody:
+        description: Info for offer delete.
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/deleteOffer'
+        required: true
+
+      responses:
+        "200":
+          description: Offer has been removed.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/offer'
+
   /offers/:
     get:
       tags:
         -offers
-      summary: Get all affers
+      summary: Get all offers
+
+      requestBody:
+        description: Info for searching offers.
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/offers'
+        required: true
+
+      responses:
+        "200":
+          description: Offers found by request.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/offer'
 
   /offers/{offerId}/comments:
     get:
@@ -108,12 +200,45 @@ paths:
         - comments
       summary: Gets all comments for the offer
       description: Gets all comments for the offer
+
+      requestBody:
+        description: Offer id for search it's comments.
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/comments'
+        required: true
+
+      responses:
+        "200":
+          description: Comments for the offer.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/comments'
+
     post:
       tags:
         - offers
         - comments
       summary: Add a comment for the offer
       description: Add a comment for the offer
+
+      requestBody:
+        description: Info for new comment creation.
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/comments'
+        required: true
+
+      responses:
+        "200":
+          description: New comment has been created.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/comments'
 
   /offers/premium:
     get:
@@ -122,17 +247,21 @@ paths:
       summary: Gets all premium offers in the city
       description: Gets all premium offers in the city
 
-  /user/favorites:
-      get:
-        tags:
-          - offers
-        summary: Gets all favirite offers of the user
-        description: Gets all favirite offers of the user
-      post:
-        tags:
-          - offers
-        summary: Puts the offer to the favirite offers of the user
-        description: Puts the offer to the favirite offers of the user
+      requestBody:
+        description: Info for search all premium offers.
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/offers'
+        required: true
+
+      responses:
+        "200":
+          description: All premium offers.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/offers'
 
 # 2.10. Выход из закрытой части приложения.
 

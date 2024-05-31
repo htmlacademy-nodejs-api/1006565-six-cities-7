@@ -2,10 +2,12 @@ import { inject } from 'inversify';
 import { DocumentType, types } from '@typegoose/typegoose';
 
 import { CityService } from './city-service.interface.js';
-import { Component } from '../../types/index.js';
+import { Component, SortType } from '../../types/index.js';
 import { Logger } from '../../libs/logger/index.js';
 import { CityEntity } from './city.entity.js';
 import { CreateCityDto } from './dto/create-city.dto.js';
+import { MAX_CITIES_COUNT } from './city.constant.js';
+
 
 export class DefaultCityService implements CityService {
   constructor(
@@ -35,5 +37,28 @@ export class DefaultCityService implements CityService {
     }
 
     return this.create(dto);
+  }
+
+  public async find(): Promise<DocumentType<CityEntity>[]> {
+    return this.cityModel
+      .aggregate([
+        {
+          $lookup: {
+            from: 'offers',
+            let: { cityId: '$_id'},
+            pipeline: [
+              { $match: { $expr: { $in: ['$$cityId', '$cities'] } } },
+              { $project: { _id: 1}}
+            ],
+            as: 'offers'
+          },
+        },
+        { $addFields:
+          { id: { $toString: '$_id'}, offerCount: { $size: '$offers'} }
+        },
+        { $unset: 'offers' },
+        { $limit: MAX_CITIES_COUNT },
+        { $sort: { offerCount: SortType.Down } }
+      ]).exec();
   }
 }
